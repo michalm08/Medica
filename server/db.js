@@ -8,6 +8,7 @@ const connectDB = async () => {
       //tutaj oimjamy przestarzale niezgodnosci versji mongo i node ktore zostana naprawione w przyszlych wercjach
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useCreateIndex: true,
     });
     console.log("mongoDb connected");
   } catch (err) {
