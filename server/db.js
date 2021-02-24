@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 const db =
-  "mongodb+srv://michalm08:lolek1@medica.hqequ.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+  "mongodb+srv://michalm08:lolek1@medica.hqequ.mongodb.net/medicaDB?retryWrites=true&w=majority";
 const connectDB = async () => {
   try {
     await mongoose.connect(db, {
-        //https://mongoosejs.com/docs/deprecations.html
-        //tutaj oimjamy przestarzale niezgodnosci versji mongo i node ktore zostana naprawione w przyszlych wercjach
+      //https://mongoosejs.com/docs/deprecations.html
+      //tutaj oimjamy przestarzale niezgodnosci versji mongo i node ktore zostana naprawione w przyszlych wercjach
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
