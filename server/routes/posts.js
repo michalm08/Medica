@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
-const auth = require("../middleware/auth.js");
+const auth = require("../middleware/auth");
 const Post = require("../models/Post");
 const Profile = require("../models/Profile");
 const User = require("../models/User");
@@ -27,7 +27,6 @@ router.post(
         avatar: user.avatar,
         user: req.user.id,
       });
-
 
       const post = await newPost.save();
 

@@ -5,10 +5,6 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  lastName: {
-    type: String,
-    required: true,
-  },
   email: {
     type: String,
     required: true,
@@ -17,6 +13,13 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+  },
+  avatar: {
+    type: String,
+  },
+  date: {
+    type: Date,
+    default: Date.now,
   },
 });
 
