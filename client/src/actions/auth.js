@@ -7,6 +7,7 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  LOGOUT,
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 
@@ -59,15 +60,15 @@ export const register = ({ name, email, password }) => async (dispatch) => {
 };
 
 // Login User
-export const login = ( email, password ) => async (dispatch) => {
+export const login = (email, password) => async (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
     },
   };
-  const body = JSON.stringify( {email, password });
+  const body = JSON.stringify({ email, password });
   try {
-    console.log(body)
+    console.log(body);
     const res = await axios.post(
       "http://localhost:5000/api/auth",
       body,
@@ -83,11 +84,16 @@ export const login = ( email, password ) => async (dispatch) => {
     if (errors) {
       // console.log(errors)
       // console.log(body)
-      
+
       errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
     }
     dispatch({
       type: LOGIN_FAIL,
     });
   }
+};
+
+//Logout / Clear Profile
+export const logout = () => (dispatch) => {
+  dispatch({ type: LOGOUT });
 };
