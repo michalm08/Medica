@@ -1,17 +1,19 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { getCurrentProfile } from "../../actions/profile";
 
-const Dashboard = props => {
-    return (
-        <div>
-            Dashboard {props.name}
+const Dashboard = ({ getCurrentProfile, auth, profile }) => {
+  useEffect(() => {
+    getCurrentProfile();
+  }, []);
+  return <div>Dashboard</div>;
+};
 
-        </div>
-    )
-}
+Dashboard.propTypes = {};
 
-Dashboard.propTypes = {
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
 
-}
-
-export default Dashboard
+export default connect(mapStateToProps, { getCurrentProfile })(Dashboard);
