@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-const CreateProfile = () => {
+import { createProfile } from "../../actions/profile";
+
+const CreateProfile = ({ createProfile, history }) => {
   const [formData, setFormData] = useState({
     company: "",
     website: "",
@@ -36,6 +39,11 @@ const CreateProfile = () => {
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    createProfile(formData, history);
+  };
+
   return (
     <>
       <h1 className="large text-primary">Create Your Profile</h1>
@@ -44,7 +52,7 @@ const CreateProfile = () => {
         profile stand out
       </p>
       <small>* = required field</small>
-      <form className="form">
+      <form className="form" onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
           <select name="status" value={status} onChange={(e) => onChange(e)}>
             <option value="0">* Select Professional Status</option>
@@ -114,7 +122,6 @@ const CreateProfile = () => {
             type="text"
             placeholder="Github Username"
             name="githubusername"
-            name="skills"
             value={githubusername}
             onChange={(e) => onChange(e)}
           />
@@ -127,7 +134,6 @@ const CreateProfile = () => {
           <textarea
             placeholder="A short bio of yourself"
             name="bio"
-            name="skills"
             value={bio}
             onChange={(e) => onChange(e)}
           ></textarea>
@@ -153,7 +159,6 @@ const CreateProfile = () => {
                 type="text"
                 placeholder="Twitter URL"
                 name="twitter"
-                name="skills"
                 value={twitter}
                 onChange={(e) => onChange(e)}
               />
@@ -165,7 +170,6 @@ const CreateProfile = () => {
                 type="text"
                 placeholder="Facebook URL"
                 name="facebook"
-                name="skills"
                 value={facebook}
                 onChange={(e) => onChange(e)}
               />
@@ -177,7 +181,6 @@ const CreateProfile = () => {
                 type="text"
                 placeholder="YouTube URL"
                 name="youtube"
-                name="skills"
                 value={youtube}
                 onChange={(e) => onChange(e)}
               />
@@ -189,7 +192,6 @@ const CreateProfile = () => {
                 type="text"
                 placeholder="Linkedin URL"
                 name="linkedin"
-                name="skills"
                 value={linkedin}
                 onChange={(e) => onChange(e)}
               />
@@ -201,7 +203,6 @@ const CreateProfile = () => {
                 type="text"
                 placeholder="Instagram URL"
                 name="instagram"
-                name="skills"
                 value={instagram}
                 onChange={(e) => onChange(e)}
               />
@@ -218,4 +219,4 @@ const CreateProfile = () => {
   );
 };
 
-export default CreateProfile;
+export default connect(null, { createProfile })(withRouter(CreateProfile));
